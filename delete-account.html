@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Account | FuckYou App</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="assets/logo.png">
+    <style>
+        .delete-container {
+            max-width: 500px;
+            width: 90%;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .shimmer-box {
+            height: 60px;
+            width: 100%;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+        }
+
+        #delete-content.hidden {
+            display: none;
+        }
+
+        #loading-state.visible {
+            display: flex;
+        }
+
+        #success-state.visible {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-container">
+        <div class="glow-orb orb-1"></div>
+        <div class="glow-orb orb-2"></div>
+    </div>
+
+    <header>
+        <div class="logo-container">
+            <a href="index.html">
+                <img src="assets/logo.png" alt="FuckYou Logo" class="logo-small">
+            </a>
+        </div>
+    </header>
+
+    <main style="display: flex; align-items: center; justify-content: center; min-height: 100vh;">
+        <div class="glass-card delete-container reveal active">
+            <!-- Initial State -->
+            <div id="delete-content">
+                <h2 style="margin-bottom: 1rem; color: var(--neon-pink);">Delete Account</h2>
+                <p style="color: var(--text-secondary); margin-bottom: 2rem;">
+                    We're sorry to see you go. Enter your email to permanently delete your data. This action is irreversible.
+                </p>
+                
+                <input type="email" id="email-input" class="input-glass" placeholder="Enter your email" required>
+                
+                <button id="delete-btn" class="btn btn-secondary" style="width: 100%;">Delete My Account</button>
+            </div>
+
+            <!-- Loading State -->
+            <div id="loading-state" class="loading-container">
+                <div class="shimmer shimmer-box"></div>
+                <div class="shimmer shimmer-box" style="width: 80%; height: 20px;"></div>
+                <p class="loading-text">Deleting Account...</p>
+            </div>
+
+            <!-- Success State -->
+            <div id="success-state" class="delete-status">
+                ACCOUNT IS DELETED
+                <p style="font-size: 1rem; color: var(--text-secondary); text-shadow: none; margin-top: 1.5rem; text-transform: none; font-weight: normal;">
+                    Your data has been purged from our systems. Stay rebellious.
+                </p>
+                <div style="margin-top: 2rem;">
+                    <a href="index.html" class="btn btn-primary">Return to Home</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.getElementById('delete-btn').addEventListener('click', () => {
+            const email = document.getElementById('email-input').value;
+            if (!email || !email.includes('@')) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+
+            // Switch to Loading State
+            document.getElementById('delete-content').classList.add('hidden');
+            document.getElementById('loading-state').classList.add('visible');
+
+            // Simulate Deletion
+            setTimeout(() => {
+                document.getElementById('loading-state').classList.remove('visible');
+                document.getElementById('success-state').classList.add('visible');
+            }, 2000);
+        });
+
+        // Simple entrance animation trigger
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                document.querySelector('.reveal').classList.add('active');
+            }, 100);
+        });
+    </script>
+</body>
+</html>

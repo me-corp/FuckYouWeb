@@ -90,6 +90,7 @@ h1, h2, h3 {
     line-height: 0.9;
     margin-bottom: 2rem;
     background: linear-gradient(to bottom, #fff 40%, var(--neon-purple));
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -317,6 +318,67 @@ footer {
 .reveal.active {
     opacity: 1;
     transform: translateY(0);
+}
+
+/* Loading & Shimmer */
+.shimmer {
+    background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.05) 0%,
+        rgba(255, 255, 255, 0.1) 50%,
+        rgba(255, 255, 255, 0.05) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite linear;
+}
+
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+.loading-container {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.loading-text {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--neon-purple);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.input-glass {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 1rem 1.5rem;
+    color: #fff;
+    font-family: inherit;
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    transition: var(--transition);
+}
+
+.input-glass:focus {
+    outline: none;
+    border-color: var(--neon-pink);
+    box-shadow: 0 0 15px rgba(255, 0, 127, 0.3);
+}
+
+.delete-status {
+    display: none;
+    text-align: center;
+    color: var(--electric-blue);
+    font-size: 2rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    text-shadow: 0 0 20px var(--electric-blue);
 }
 
 @media (max-width: 768px) {
